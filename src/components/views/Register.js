@@ -35,28 +35,55 @@ FormField.propTypes = {
   onChange: PropTypes.func
 };
 
-const Login = props => {
+const Register = props => {
   const history = useHistory();
-  const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
 
-  const doLogin = async () => {
+  const doRegister = async () => {
     try {
-      const requestBody = JSON.stringify({username, name});
-      const response = await api.post('/users', requestBody);
+
+      const requestBody = JSON.stringify({username, password});
+      const response = await api.post('/users/register', requestBody); // TO DO: remove register
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
-      // Store the token into the local storage.
+      // Store the token into the local storage. CHECK
       localStorage.setItem('token', user.token);
+      localStorage.setItem('id', user.id);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
+      // Register successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/game`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
   };
+
+
+  const doLogin = async () => {
+
+    try {
+      const requestBody = JSON.stringify({username, password});
+      const response = await api.post('/users/login', requestBody);
+
+      // Get the returned user and update a new object.
+      const user = new User(response.data);
+
+      // Store the token into the local storage. CHECK
+      localStorage.setItem('token', user.token);
+      localStorage.setItem('id', user.id);
+
+      history.push(`/game`);
+    } catch (error) {
+      alert(`Something went wrong during the login: \n${handleError(error)}`);
+    }
+
+  };
+
+
+
+
 
   return (
     <BaseContainer>
@@ -68,18 +95,26 @@ const Login = props => {
             onChange={un => setUsername(un)}
           />
           <FormField
-            label="Name"
-            value={name}
-            onChange={n => setName(n)}
+            label="Password"
+            value={password}
+            onChange={n => setPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !password}
               width="100%"
-              onClick={() => doLogin()}
+              onClick={() => doRegister()}
             >
-              Login
+              Register
             </Button>
+            &nbsp;&nbsp;
+              <Button
+                  disabled={!username || !password}
+                  width="100%"
+                  onClick={() => doLogin()}
+              >
+                Login
+              </Button>
           </div>
         </div>
       </div>
@@ -91,4 +126,4 @@ const Login = props => {
  * You can get access to the history object's properties via the withRouter.
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
-export default Login;
+export default Register;
