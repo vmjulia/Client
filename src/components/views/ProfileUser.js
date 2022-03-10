@@ -39,6 +39,20 @@ const Profile = () => {
 
                 const response = await api.get('/users/' + localStorage.getItem("idUser"));
 
+                if(response.data.birthday== null){
+                    response.data.birthday = "no information"
+                }
+                else{
+                    response.data.birthday= response.data.birthday.substr(0, 4);
+
+                }
+                if(response.data.creation_date== null){
+                    response.data.creation_date = "no information"
+                }
+                else{
+                    response.data.creation_date = response.data.creation_date.substr(0, 10);;
+                }
+
                 // await new Promise(resolve => setTimeout(resolve, 1000));
                 setUser(response.data);
 

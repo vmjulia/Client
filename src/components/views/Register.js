@@ -46,8 +46,11 @@ const Register = props => {
       const requestBody = JSON.stringify({username, password});
       const response = await api.post('/users/register', requestBody); // TO DO: remove register
 
+
       // Get the returned user and update a new object.
       const user = new User(response.data);
+
+
 
       // Store the token into the local storage. CHECK
       localStorage.setItem('token', user.token);

@@ -70,6 +70,21 @@ const Game = () => {
                 // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
+                if(response.data.birthday== null){
+                    response.data.birthday = "no information"
+                }
+                else{
+                    response.data.birthday= response.data.birthday.substr(0, 4);
+
+                }
+                if(response.data.create== null){
+                    response.data.creation_date = "no information"
+                }
+                else{
+
+                    response.data.creation_date = response.data.creation_date.substr(0, 4);
+                }
+
                 // Get the returned users and update the state.
                 setUsers(response.data);
 
