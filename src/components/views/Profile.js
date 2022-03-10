@@ -53,7 +53,7 @@ const Profile = () => {
                     response.data.birthday = "no information"
                 }
                 else{
-                    response.data.birthday= response.data.birthday.substr(0, 4);
+                    response.data.birthday= response.data.birthday.substr(0, 10);
 
                 }
                 if(response.data.creation_date== null){

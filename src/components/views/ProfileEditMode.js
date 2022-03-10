@@ -52,7 +52,7 @@ const Profile = () => {
             const requestBody = JSON.stringify({username, birthday});
             await api.put('/users/' + localStorage.getItem("id"), requestBody); // TO DO: remove register
             // Register successfully worked --> navigate to the route /game in the GameRouter
-            history.push(`/game`);
+            history.push(`/game/profile`);
         } catch (error) {
             alert(`Something went wrong during the login: \n${handleError(error)}`);
         }
