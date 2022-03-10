@@ -7,13 +7,32 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import User from "../../models/User";
+//<div className="player status">status: {user.logged_in.toString()}</div>
 
-const Player = ({user}) => (
-    <div className="player container">
+
+
+const Player = ({user}) => {
+    const history = useHistory();
+    const doShow = () => {
+
+        try {
+            localStorage.setItem("idUser", user.id)
+            history.push('/game/profileUser');
+        } catch (error) {
+            alert(`Something went wrong  \n${handleError(error)}`);
+        }
+
+    };
+
+
+
+    return (<Button
+        className="player container"
+        onClick={() => doShow()}>
         <div className="player username">{user.username}</div>
-        <div className="player status">status: {user.logged_in.toString()}</div>
-    </div>
-);
+        <div className="player status"> {user.logged_in.toString()}</div>
+    </Button>)
+};
 
 Player.propTypes = {
     user: PropTypes.object
@@ -75,12 +94,7 @@ const Game = () => {
     }, []);
 
     const doShow = () => {
-        //try {
-        //const id = localStorage.getItem("id")
-        //const response = await api.post('/users/{id}');
 
-        // Get the returned user and update a new object.
-        // const user = new User(response.data);
         try {
             history.push(`/game/profile`);
         } catch (error) {
@@ -89,6 +103,8 @@ const Game = () => {
 
     };
 
+
+
     let content = <Spinner/>;
 
     if (users) {
@@ -96,7 +112,7 @@ const Game = () => {
             <div className="game">
                 <ul className="game user-list">
                     {users.map(user => (
-                        <Player user={user} key={user.id}/>
+                        <Player user = {user} />
                     ))}
                 </ul>
                 <Button

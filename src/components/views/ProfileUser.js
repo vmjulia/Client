@@ -33,23 +33,13 @@ const Profile = () => {
         localStorage.removeItem('id');
         history.push('/login');
     }
-
-    const edit = () => {
-        try {
-            history.push('/game/profileEditMode');
-        } catch (error) {
-            alert(`Something went wrong  \n${handleError(error)}`);
-        }
-
-    };
-
     useEffect(() => {
         async function fetchData() {
             try {
 
-                const response = await api.get('/users/' + localStorage.getItem("id"));
+                const response = await api.get('/users/' + localStorage.getItem("idUser"));
 
-               // await new Promise(resolve => setTimeout(resolve, 1000));
+                // await new Promise(resolve => setTimeout(resolve, 1000));
                 setUser(response.data);
 
 
@@ -86,13 +76,6 @@ const Profile = () => {
                     onClick={() => logout()}
                 >
                     Logout
-                </Button>
-                &nbsp;
-                <Button
-                    width="100%"
-                    onClick={() => edit()}
-                >
-                    Edit
                 </Button>
             </div>
         );
