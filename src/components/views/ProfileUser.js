@@ -31,6 +31,7 @@ const Profile = () => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
+        localStorage.removeItem('idUser');
         history.push('/login');
     }
     useEffect(() => {
@@ -60,6 +61,8 @@ const Profile = () => {
                 else{
                     response.data.creation_date = response.data.creation_date.substr(0, 10);;
                 }
+
+                setUser(response.data);
 
 
             } catch (error) {

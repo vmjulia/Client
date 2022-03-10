@@ -70,13 +70,7 @@ const Game = () => {
                 // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
-                //const res = response.data.map((x) => {
-                  //  if (x.data.logged_in) {
-                   //     x.data.logged_in = "online"
-                   // } else {
-                    //    x.data.logged_in = "offline"
-                   // }
-               // })
+
 
 
                     // Get the returned users and update the state.
