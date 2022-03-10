@@ -31,6 +31,7 @@ const Profile = () => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
+        localStorage.removeItem('idUser');
         history.push('/login');
     }
 
@@ -48,6 +49,14 @@ const Profile = () => {
             try {
 
                 const response = await api.get('/users/' + localStorage.getItem("id"));
+
+                if(response.data.logged_in){
+                    response.data.logged_in = "online"
+                }
+                else {
+                    response.data.logged_in = "offline"
+
+                }
 
                 if(response.data.birthday== null){
                     response.data.birthday = "no information"
@@ -70,7 +79,7 @@ const Profile = () => {
             } catch (error) {
                 console.error(`Something went wrong while fetching the users data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users data.");
+                alert("Something went wrong while fetching the user`s data.");
             }
         }
 

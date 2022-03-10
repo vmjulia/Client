@@ -39,6 +39,14 @@ const Profile = () => {
 
                 const response = await api.get('/users/' + localStorage.getItem("idUser"));
 
+                if(response.data.logged_in){
+                    response.data.logged_in = "online"
+                }
+                else {
+                    response.data.logged_in = "offline"
+
+                }
+
                 if(response.data.birthday== null){
                     response.data.birthday = "no information"
                 }
@@ -52,9 +60,6 @@ const Profile = () => {
                 else{
                     response.data.creation_date = response.data.creation_date.substr(0, 10);;
                 }
-
-                // await new Promise(resolve => setTimeout(resolve, 1000));
-                setUser(response.data);
 
 
             } catch (error) {

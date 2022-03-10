@@ -13,6 +13,7 @@ class User {
     this.birthday = null;
     this.creation_date = null;
     Object.assign(this, data);
+
   }
 }
 export default User;
