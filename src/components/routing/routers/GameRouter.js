@@ -5,11 +5,13 @@ import Profile from "components/views/Profile";
 import ProfileUser from "components/views/ProfileUser";
 import ProfileEditMode from "components/views/ProfileEditMode";
 import PropTypes from 'prop-types';
+import {useParams} from 'react-router-dom';
 
 const GameRouter = props => {
     /**
      * "this.props.base" is "/app" because as been passed as a prop in the parent of GameRouter, i.e., App.js
      */
+
     return (
 
         <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -18,21 +20,15 @@ const GameRouter = props => {
             </Route>
 
             <Route  exact path={`${props.base}/profile`}>
-
                 <Profile/>
-
             </Route>
 
-            <Route exact path={`${props.base}/profileUser`}>
-
+            <Route exact path={`${props.base}/profileUser/:id`}>
                 <ProfileUser/>
-
             </Route>
 
             <Route exact path={`${props.base}/profileEditMode`}>
-
                 <ProfileEditMode/>
-
             </Route>
 
             <Route exact path={`${props.base}`}>

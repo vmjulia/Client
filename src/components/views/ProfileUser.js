@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
@@ -23,22 +23,21 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Profile = () => {
-
+const ProfileUser = () => {
+    const {id} = useParams();
     const history = useHistory();
     const [user, setUser] = useState(null);
 
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
-        localStorage.removeItem('idUser');
         history.push('/login');
     }
     useEffect(() => {
         async function fetchData() {
             try {
 
-                const response = await api.get('/users/' + localStorage.getItem("idUser"));
+                const response = await api.get('/users/' + id);
 
                 if(response.data.logged_in){
                     response.data.logged_in = "online"
@@ -121,4 +120,4 @@ const Profile = () => {
     );
 }
 
-export default Profile;
+export default ProfileUser;

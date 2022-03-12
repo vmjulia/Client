@@ -3,9 +3,11 @@ import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
+
 import User from "../../models/User";
 //<div className="player status">status: {user.logged_in.toString()}</div>
 
@@ -13,22 +15,18 @@ import User from "../../models/User";
 
 const Player = ({user}) => {
     const history = useHistory();
-    const doShow = () => {
 
+    const showUser = () => {
         try {
-            localStorage.setItem("idUser", user.id)
-            history.push('/game/profileUser');
+            history.push( `/game/profileUser/${user.id}`);
         } catch (error) {
             alert(`Something went wrong  \n${handleError(error)}`);
         }
-
     };
-
-
 
     return (<Button
         className="player container"
-        onClick={() => doShow()}>
+        onClick={() => showUser()}>
         <div className="player username">{user.username}</div>
         <div className="player status"> {user.logged_in.toString()}</div>
     </Button>)
@@ -97,13 +95,11 @@ const Game = () => {
     }, []);
 
     const doShow = () => {
-
         try {
             history.push(`/game/profile`);
         } catch (error) {
             alert(`Something went wrong  \n${handleError(error)}`);
         }
-
     };
 
 
