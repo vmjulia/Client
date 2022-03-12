@@ -47,7 +47,11 @@ const Game = () => {
 
 
 
-    const logout = () => {
+    const logout = async () => {
+
+        const logged_in = false;
+        const requestBody = JSON.stringify({logged_in});
+        await api.put('/users/' + localStorage.getItem("id"), requestBody);
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         history.push('/login');
