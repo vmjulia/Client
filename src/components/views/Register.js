@@ -50,8 +50,6 @@ const Register = props => {
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
-
-
       // Store the token into the local storage. CHECK
       localStorage.setItem('token', user.token);
       localStorage.setItem('id', user.id);

@@ -7,6 +7,7 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import User from "../../models/User";
+import {findRenderedDOMComponentWithTag} from "react-dom/test-utils";
 
 const Player = ({user}) => (
     <div>
@@ -31,7 +32,6 @@ const Profile = () => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
-        localStorage.removeItem('idUser');
         history.push('/login');
     }
 
@@ -47,33 +47,9 @@ const Profile = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-
                 const response = await api.get('/users/' + localStorage.getItem("id"));
-
-                if(response.data.logged_in){
-                    response.data.logged_in = "online"
-                }
-                else {
-                    response.data.logged_in = "offline"
-
-                }
-
-                if(response.data.birthday== null){
-                    response.data.birthday = "no information"
-                }
-                else{
-                    response.data.birthday= response.data.birthday.substr(0, 10);
-
-                }
-                if(response.data.creation_date== null){
-                    response.data.creation_date = "no information"
-                }
-                else{
-                    response.data.creation_date = response.data.creation_date.substr(0, 10);;
-                }
-
-               // await new Promise(resolve => setTimeout(resolve, 1000));
-                setUser(response.data);
+                const data = new User(response.data);
+                setUser(data);
 
 
             } catch (error) {

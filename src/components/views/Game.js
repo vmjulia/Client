@@ -3,11 +3,9 @@ import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
-import {useParams} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
-
 import User from "../../models/User";
 //<div className="player status">status: {user.logged_in.toString()}</div>
 
@@ -28,7 +26,7 @@ const Player = ({user}) => {
         className="player container"
         onClick={() => showUser()}>
         <div className="player username">{user.username}</div>
-        <div className="player status"> {user.logged_in.toString()}</div>
+        <div className="player status"> {user.logged_in}</div>
     </Button>)
 };
 
@@ -46,6 +44,8 @@ const Game = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
+
+
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -68,21 +68,12 @@ const Game = () => {
                 // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
+                const data = response.data.map(item => {
+                    return new User(item)
+                })
 
+                setUsers(data);
 
-
-                    // Get the returned users and update the state.
-                setUsers(response.data);
-
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
-                console.log(response);
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details:", error);
