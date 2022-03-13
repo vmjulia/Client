@@ -9,6 +9,16 @@ import "styles/views/Game.scss";
 import User from "../../models/User";
 import {findRenderedDOMComponentWithTag} from "react-dom/test-utils";
 
+/**
+ * this one and profileUser are quite similar
+ * this one is used tzo dsiplay your own profile  ( so it also has button edit)
+ * profile edit mode does not have such
+ * function retirns content and button back
+ * content contains user info and a few more buttons: logout and edit
+ * the functionaly of lougout and edit buttons on click is defined below
+
+ */
+
 const Player = ({user}) => (
     <div>
         <div className="player container">username: {user.username}</div>

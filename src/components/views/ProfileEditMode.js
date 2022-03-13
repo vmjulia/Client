@@ -8,7 +8,9 @@ import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import User from "../../models/User";
 
-
+/**
+ * component form field is difined and ised below
+ */
 const FormField = props => {
     return (
         <div className="login field">
@@ -31,7 +33,11 @@ FormField.propTypes = {
     onChange: PropTypes.func
 };
 
+/**
+ * profile returns button Back and content, content contains functional components  form fields defined above
+ * as well as button save. save on click calls changeUdsernameBirthday, which handles api request send and redirects to profile page
 
+ */
 
 const Profile = () => {
 

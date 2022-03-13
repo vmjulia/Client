@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 /**
  *
- * Another way to export directly your functional component.
+ * Another way to export directly your functional component., this one is never used
  */
 export const LoginGuard = props => {
   if (!localStorage.getItem("token")) {

@@ -40,6 +40,11 @@ const Register = props => {
   const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
 
+
+  /**
+   * 2 functions: do login and do regisetr which are called when buttons are pressed
+   */
+
   const doRegister = async () => {
     try {
 
@@ -83,6 +88,9 @@ const Register = props => {
   };
 
 
+  /**
+   * below is what is displayed on the screen
+   */
 
 
 

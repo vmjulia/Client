@@ -19,7 +19,9 @@ class User {
      this.logged_in = "offline"
 
     }
-
+    /**
+     * below it is to ensure the mapping to display some fields nicely
+     */
     if(this.birthday== null){
       this.birthday = "no information"
     }

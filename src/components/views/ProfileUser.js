@@ -8,6 +8,11 @@ import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import User from "../../models/User";
 
+/**
+ * similar to profile bit doesnt contain edit button, and retrived id for api request from the link instead of from storage
+ *
+ */
+
 const Player = ({user}) => (
     <div>
         <div className="player container">username: {user.username}</div>

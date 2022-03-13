@@ -10,7 +10,10 @@ import User from "../../models/User";
 //<div className="player status">status: {user.logged_in.toString()}</div>
 
 
-
+/**
+ * here we have a dashboard where each line is player. below player is defiend, which is a clickable button
+ * which displys username and status
+ */
 const Player = ({user}) => {
     const history = useHistory();
 
@@ -33,6 +36,15 @@ const Player = ({user}) => {
 Player.propTypes = {
     user: PropTypes.object
 };
+
+/**
+ * below is the game dashboard itself
+ * it returns content which contains users ( users are state, hence it rerenders when api returns smth
+ * besides content it also displays a few buttons which do different functonality on click
+ * for example button logout on click calls function logout
+ * button my profile on click calls function do show which redirects to the user profile page
+ * the redirectio happens in a way that id is stored in storage and hence used further to to show the data
+ */
 
 const Game = () => {
     // use react-router-dom's hook to access the history
