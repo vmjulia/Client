@@ -72,7 +72,7 @@ const Profile = () => {
             // Register successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/game/profile`);
         } catch (error) {
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
+            alert(`Something went wrong during the login, make sure that birthday has format YYYY-MM-DD: \n${handleError(error)}`);
         }
     };
 
