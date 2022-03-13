@@ -53,6 +53,7 @@ const Profile = () => {
     const changeUsernameBirthday = async () => {
         try {
             const requestBody = JSON.stringify({username, birthday});
+            console.log(username);
             await api.put('/users/' + localStorage.getItem("id"), requestBody); // TO DO: remove register
             // Register successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/game/profile`);
@@ -68,7 +69,7 @@ const Profile = () => {
 
     const doBack = () => {
         try {
-            history.push('/game/');
+            history.goBack();
         } catch (error) {
             alert(`Something went wrong  \n${handleError(error)}`);
         }

@@ -70,7 +70,7 @@ const Profile = () => {
 
     const doBack = () => {
         try {
-            history.goBack();
+            history.push('/game/');
         } catch (error) {
             alert(`Something went wrong  \n${handleError(error)}`);
         }
