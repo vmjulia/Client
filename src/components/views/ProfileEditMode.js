@@ -52,7 +52,15 @@ const Profile = () => {
 
     const changeUsernameBirthday = async () => {
         try {
-            const requestBody = JSON.stringify({username, birthday});
+            let requestBody
+            if (username && birthday){
+                requestBody = JSON.stringify({username, birthday});}
+            else if (username) {
+                requestBody = JSON.stringify({username});
+            }
+            else {
+                requestBody = JSON.stringify({birthday});
+            }
             console.log(username);
             await api.put('/users/' + localStorage.getItem("id"), requestBody); // TO DO: remove register
             // Register successfully worked --> navigate to the route /game in the GameRouter
